@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   title = "AnguMovies";
   
   overview: string;
-  PopularList: Array<PopularLayout> = [];
+  PopularList: PopularLayout = new PopularLayout();
   
   
   constructor(public apiMovies: ApiServiceService) { 
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     });
 
     this.apiMovies.getPopular().subscribe(result =>{
-      this.PopularList = result.results;
+      this.PopularList = result;
 
       /* this.id = result.id;
       this.image1 = result.poster_path;

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { PopularLayout } from './models/popularList';
 
 @Injectable({
   providedIn: 'root'
@@ -20,10 +21,10 @@ export class ApiServiceService {
 
   getOverview(): Observable<any>{
     return this.http.get<any>(`${this.baseUrl}/movie/550?api_key=${this.apiKey}`)
-  }
+  }E
 
-  getPopular(): Observable<any>{
-    return this.http.get<any>(`${this.baseUrl}/movie/popular?page=1&api_key=${this.apiKey}&language=en-US&page=1`)
+  getPopular(): Observable<PopularLayout>{
+    return this.http.get<PopularLayout>(`${this.baseUrl}/movie/popular?page=1&api_key=${this.apiKey}&language=en-US&page=1`)
   }
 
 
