@@ -23,7 +23,7 @@ export class ApiServiceService {
   }
 
   getPopular(): Observable<any>{
-    return this.http.get<any>(`${this.baseUrl}/movie/popular?page=1&api_key=${this.apiKey}`)
+    return this.http.get<any>(`${this.baseUrl}/movie/popular?page=1&api_key=${this.apiKey}&language=en-US&page=1`)
   }
 
 

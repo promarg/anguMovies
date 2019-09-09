@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from '../api-service.service';
-import { Subscriber } from 'rxjs';
+import { PopularLayout } from '../models/popularList'
+
 
 
 @Component({
@@ -10,17 +11,13 @@ import { Subscriber } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
 
-   title = "AnguMovies";
+
+  title = "AnguMovies";
   
-   overview: string;
-
-   id: number;   
-   image1: string;
-   image2: string;
-   popularity: number;
-   vote: number;
-   release: Date;
-
+  overview: string;
+  PopularList: Array<PopularLayout> = [];
+  
+  
   constructor(public apiMovies: ApiServiceService) { 
 
   }
@@ -31,13 +28,17 @@ export class HomeComponent implements OnInit {
     });
 
     this.apiMovies.getPopular().subscribe(result =>{
-      this.id = result.results.id;
+      this.PopularList = result.results;
+
+      /* this.id = result.id;
       this.image1 = result.poster_path;
       this.image2 = result.backdrop_path;
       this.popularity = result.popularity;
       this.vote = result.vote_average;
       this.release = result.release_date;
-    })
+ */
+    });
+
   };
 
 }
