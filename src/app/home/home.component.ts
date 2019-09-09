@@ -9,17 +9,22 @@ import { PopularLayout } from '../models/popularList'
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
+
 export class HomeComponent implements OnInit {
 
 
   title = "AnguMovies";
   
+  
   overview: string;
+  
   PopularList: PopularLayout = new PopularLayout();
   
+  base_url = "https://image.tmdb.org/t/p/";
+  file_size = "w500/";
   
   constructor(public apiMovies: ApiServiceService) { 
-
   }
 
   ngOnInit() {
