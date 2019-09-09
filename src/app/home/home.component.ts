@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from '../api-service.service';
 import { PopularLayout } from '../models/popularList'
+import { PopularLayoutTv } from '../models/popularListTv'
 
 
 
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit {
   overview: string;
   
   PopularList: PopularLayout = new PopularLayout();
+  PopularListTv: PopularLayoutTv = new PopularLayoutTv();
   
   base_url = "https://image.tmdb.org/t/p/";
   file_size = "w500/";
@@ -43,6 +45,12 @@ export class HomeComponent implements OnInit {
       this.release = result.release_date;
  */
     });
+
+    this.apiMovies.getTvPopular().subscribe(result =>{
+      this.PopularListTv = result;
+    })
+
+
 
   };
 

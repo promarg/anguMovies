@@ -1,5 +1,6 @@
 import { Movie } from './movieData';
 
+
 export class PopularLayout {
 
    
@@ -9,3 +10,5 @@ export class PopularLayout {
    public results: Array<Movie>;
 
 }
+
+

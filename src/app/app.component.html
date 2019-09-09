@@ -1,5 +1,9 @@
-
-
-<app-home></app-home>
+<nav class="navbar navbar-light bg-light justify-content-center">
+    <form class="form-inline">
+        <button class="btn btn-sm btn-outline-dark" type="button"> <a [routerLink]="['/home']">HOME</a> </button>
+        <button class="btn btn-sm btn-outline-dark ml-2" type="button"><a [routerLink]="['/synopsis']">SYNOPSIS AND
+                MORE</a></button>
+    </form>
+</nav>
 
 <router-outlet></router-outlet>

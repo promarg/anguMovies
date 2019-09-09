@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { PopularLayout } from './models/popularList';
+import { PopularLayoutTv } from './models/popularListTv';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class ApiServiceService {
 
   getOverview(): Observable<any>{
     return this.http.get<any>(`${this.baseUrl}/movie/550?api_key=${this.apiKey}`)
-  }E
+  }
 
   getPopular(): Observable<PopularLayout>{
     return this.http.get<PopularLayout>(`${this.baseUrl}/movie/popular?page=1&api_key=${this.apiKey}&language=en-US&page=1`)
@@ -29,7 +30,9 @@ export class ApiServiceService {
 
 
 
-
+getTvPopular(): Observable<PopularLayoutTv>{
+  return this.http.get<PopularLayoutTv>(`${this.baseUrl}/tv/popular?api_key=${this.apiKey}&language=en-US&page=1`)
+}
 
 
 
