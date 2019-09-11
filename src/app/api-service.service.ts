@@ -35,5 +35,9 @@ getTvPopular(): Observable<PopularLayoutTv>{
 }
 
 
+/* getApi(): Observable<any>{
+  return this.http.get("l'API en question avec les bon paramètre")
+} */
+
 
 }
