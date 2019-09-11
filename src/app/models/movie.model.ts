@@ -1,5 +1,4 @@
 export class Movie {
-
     popularity: number;
     vote_count: number;
     video: boolean;
@@ -13,5 +12,4 @@ export class Movie {
     vote_average: number
     overview: string;
     release_date: string
-
 }

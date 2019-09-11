@@ -1,4 +1,4 @@
-export class Tv{
+export class Show{
     original_name: string;
     popularity: number;
     first_air_date: string;
@@ -6,5 +6,4 @@ export class Tv{
     overview: string;
     poster_path: string;
     vote_average: number;
-
 }

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="raw">
-        <div class="media col-12 mt-5" *ngFor="let movie of PopularList.results">
-            <img src="{{base_url + file_size + movie.poster_path}}" class="align-self-start mr-3" alt="...">
+        <div class="media col-12 mt-5" *ngFor="let movie of popularMovies.results">
+            <img [src]="getPoster(movie)" class="align-self-start mr-3" alt="...">
             <div class="media-body">
                 <h3 class="mt-0">{{movie.title}}</h3>
                 <h5>{{movie.vote_average}}/10</h5>
@@ -17,13 +17,13 @@
 
 <div class="container">
         <div class="raw">
-            <div class="media col-12 mt-5" *ngFor="let tv of PopularListTv.results">
-                <img src="{{base_url + file_size + tv.poster_path}}" class="align-self-start mr-3" alt="...">
+            <div class="media col-12 mt-5" *ngFor="let show of popularShows.results">
+                <img [src]="getPoster(show)" class="align-self-start mr-3" alt="...">
                 <div class="media-body">
-                    <h3 class="mt-0">{{tv.original_name}}</h3>
-                    <h5>{{tv.vote_average}}/10</h5>
-                    <p>{{tv.overview}}</p>
-                    <p>movie viewed {{tv.popularity}} times</p>
+                    <h3 class="mt-0">{{show.original_name}}</h3>
+                    <h5>{{show.vote_average}}/10</h5>
+                    <p>{{show.overview}}</p>
+                    <p>movie viewed {{show.popularity}} times</p>
                 </div>
             </div>
         </div>

@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiServiceService } from '../api-service.service';
-import { PopularLayout } from '../models/popularList';
-import { PopularLayoutTv } from '../models/popularListTv';
-
-
+import { TmdbApiService } from 'app/services/tmdb-api.service';
+import { Movies, Shows, Movie, Show } from 'app/models';
 
 @Component({
   selector: 'app-overview',
@@ -12,25 +9,25 @@ import { PopularLayoutTv } from '../models/popularListTv';
 })
 export class OverviewComponent implements OnInit {
 
-  PopularList: PopularLayout = new PopularLayout();
-  PopularListTv: PopularLayoutTv = new PopularLayoutTv();
+  popularMovies: Movies = new Movies();
+  popularShows: Shows = new Shows();
 
-  base_url = "https://image.tmdb.org/t/p/";
-  file_size = "w200/";
-
+  baseUrl = "https://image.tmdb.org/t/p/";
+  fileSize = "w200/";
   
-  constructor(public apiMovies: ApiServiceService) { }
+  constructor(public tmdbApiService: TmdbApiService) { }
 
   ngOnInit() {
-    this.apiMovies.getPopular().subscribe(result => {
-      this.PopularList = result;
-    })
+    this.tmdbApiService.getPopularMovies().subscribe((movies: Movies) =>{
+      this.popularMovies = movies;
+    });
 
-
-    this.apiMovies.getTvPopular().subscribe(result =>{
-      this.PopularListTv = result;
-    })
-
+    this.tmdbApiService.getPopularShows().subscribe((shows: Shows) =>{
+      this.popularShows = shows;
+    });
   }
 
+  getPoster(media: Movie|Show) {
+    if (media) return this.baseUrl + this.fileSize + media.poster_path;
+  }
 }

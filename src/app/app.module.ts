@@ -1,21 +1,22 @@
+//Angular Core Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+//External Modules
+
+//Config
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+
+//Services
+import { TmdbApiService } from './services/tmdb-api.service';
+
+//Common Modules
+
+//View Modules
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule} from '@angular/common/http'
-import { Routes, RouterModule } from '@angular/router';
 import { OverviewComponent } from './overview/overview.component';
-
-
-
-const ROUTES: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'synopsis', component: OverviewComponent },
-];
-
-export { ROUTES };
 
 @NgModule({
   declarations: [
@@ -27,10 +28,8 @@ export { ROUTES };
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule,
-    RouterModule.forRoot(ROUTES)
   ],
-  providers: [],
+  providers: [TmdbApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

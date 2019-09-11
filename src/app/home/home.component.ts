@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiServiceService } from '../api-service.service';
-import { PopularLayout } from '../models/popularList'
-import { PopularLayoutTv } from '../models/popularListTv'
-
-
+import { TmdbApiService } from 'app/services/tmdb-api.service';
+import { Movies, Shows, Movie, Show } from 'app/models';
 
 @Component({
   selector: 'app-home',
@@ -11,47 +8,34 @@ import { PopularLayoutTv } from '../models/popularListTv'
   styleUrls: ['./home.component.scss']
 })
 
-
 export class HomeComponent implements OnInit {
 
-
-  title = "AnguMovies";
-  
-  
+  title: String = "AnguMovies";
   overview: string;
   
-  PopularList: PopularLayout = new PopularLayout();
-  PopularListTv: PopularLayoutTv = new PopularLayoutTv();
+  popularMovies: Movies = new Movies();
+  popularShows: Shows = new Shows();
   
-  base_url = "https://image.tmdb.org/t/p/";
-  file_size = "w500/";
+  baseUrl = "https://image.tmdb.org/t/p/";
+  fileSize = "w500/";
   
-  constructor(public apiMovies: ApiServiceService) { 
-  }
+  constructor(public tmdbApiService: TmdbApiService) { }
 
   ngOnInit() {
-    this.apiMovies.getOverview().subscribe(result =>{
-      this.overview = result.overview;
+    this.tmdbApiService.getMovie().subscribe((movie: Movie) =>{
+      this.overview = movie.overview;
     });
 
-    this.apiMovies.getPopular().subscribe(result =>{
-      this.PopularList = result;
-
-      /* this.id = result.id;
-      this.image1 = result.poster_path;
-      this.image2 = result.backdrop_path;
-      this.popularity = result.popularity;
-      this.vote = result.vote_average;
-      this.release = result.release_date;
- */
+    this.tmdbApiService.getPopularMovies().subscribe((movies: Movies) =>{
+      this.popularMovies = movies;
     });
 
-    this.apiMovies.getTvPopular().subscribe(result =>{
-      this.PopularListTv = result;
-    })
-
-
-
+    this.tmdbApiService.getPopularShows().subscribe((shows: Shows) =>{
+      this.popularShows = shows;
+    });
   };
 
+  getPoster(media: Movie|Show) {
+    if (media) return this.baseUrl + this.fileSize + media.poster_path;
+  }
 }
